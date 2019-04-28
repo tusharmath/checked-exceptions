@@ -16,39 +16,53 @@ describe('check()', () => {
     const err = check('NotImplemented')
     assert.typeOf(err, 'function')
   })
-  it('should return a customized message', () => {
-    const E = check(
-      'UserNotFound',
-      (_: IUser) => `User with id: ${_.id}, could not be found`
-    )
-    const error = new E({id: 190})
 
-    assert.strictEqual(error.message, 'User with id: 190, could not be found')
+  describe('new', () => {
+    it('should return an Error', () => {
+      const E = check('NotImplemented')
+      assert.instanceOf(new E(), Error)
+    })
   })
 
-  it('should customize toString()', () => {
-    const E = check(
-      'UserIdNotFound',
-      (_: IUser) => `User with id: ${_.id}, could not be found`
-    )
-    const error = new E({id: 190})
+  describe('message', () => {
+    it('should return a customized message', () => {
+      const E = check(
+        'UserNotFound',
+        (_: IUser) => `User with id: ${_.id}, could not be found`
+      )
 
-    assert.strictEqual(
-      error.toString(),
-      'CheckedException(UserIdNotFound): User with id: 190, could not be found'
-    )
+      const error = new E({id: 190})
+      assert.strictEqual(error.message, 'User with id: 190, could not be found')
+    })
   })
 
-  it('should generate default string', () => {
-    const E = check('NotImplemented')
-    const error = new E()
-
-    assert.strictEqual(error.toString(), 'CheckedException(NotImplemented)')
+  describe('type', () => {
+    it('should return the message type', () => {
+      const E = check('E')
+      const error = new E()
+      assert.strictEqual(error.type, 'E')
+    })
   })
 
-  it('should return an Error', () => {
-    const E = check('NotImplemented')
-    assert.instanceOf(new E(), Error)
+  describe('toString()', () => {
+    it('should customize toString()', () => {
+      const E = check(
+        'UserIdNotFound',
+        (_: IUser) => `User with id: ${_.id}, could not be found`
+      )
+      const error = new E({id: 190})
+
+      assert.strictEqual(
+        error.toString(),
+        'CheckedException(UserIdNotFound): User with id: 190, could not be found'
+      )
+    })
+    it('should generate default string', () => {
+      const E = check('NotImplemented')
+      const error = new E()
+
+      assert.strictEqual(error.toString(), 'CheckedException(NotImplemented)')
+    })
   })
 
   describe('data', () => {

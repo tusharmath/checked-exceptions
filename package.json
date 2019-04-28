@@ -20,6 +20,7 @@
   },
   "scripts": {
     "create-docs": "typedoc",
+    "check-types": "typings-checker test-types/types.ts",
     "lint": "tslint --project .",
     "prepublishOnly": "tsc -d",
     "prettier": "git ls-files | grep '.ts$' | xargs prettier --write --config=.prettierrc",

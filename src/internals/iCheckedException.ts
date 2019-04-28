@@ -1,7 +1,7 @@
 /**
  * Typical checked exception
  */
-export interface ICheckedException<A> extends Error {
+export interface ICheckedException<N, A> extends Error {
   /**
    * Error data
    */
@@ -11,9 +11,9 @@ export interface ICheckedException<A> extends Error {
    */
   message: string
   /**
-   * Error name
+   * Error type
    */
-  name: string
+  type: N
   /**
    * Returns a printable error message
    */

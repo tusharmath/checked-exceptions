@@ -4,14 +4,14 @@ import {ICheckedException} from './internals/iCheckedException'
 
 /**
  * Creates a new [[ICheckedException]]
- * @param name Name of the exception
+ * @param type Name of the exception
  * @param toString Takes in a set of data params and converts it to error string
  */
-export const check = <A = void>(
-  name: string,
+export const check = <N extends string, A = void>(
+  type: N,
   toString: (data: A) => string = empty
-): CheckedExceptionClass<A> =>
-  class CheckedException extends Error implements ICheckedException<A> {
+): CheckedExceptionClass<N, A> =>
+  class CheckedException extends Error implements ICheckedException<N, A> {
     /**
      * Checks if the object is an instance of the given error type
      * @param obj Any object
@@ -24,9 +24,14 @@ export const check = <A = void>(
      * Creates a new instance of the exception
      * @param message Error Message
      */
-    public static of(data: A): ICheckedException<A> {
+    public static of(data: A): ICheckedException<N, A> {
       return new CheckedException(data)
     }
+
+    /**
+     * Returns the type of the exception
+     */
+    public readonly type = type
 
     /**
      * Reference to the passed on [[toString]].
@@ -38,7 +43,7 @@ export const check = <A = void>(
      * Reference to the passed on [[name]].
      * This is done for perf optimization.
      */
-    private readonly exceptionName = name
+    private readonly exceptionName = type
 
     public constructor(public readonly data: A) {
       super()

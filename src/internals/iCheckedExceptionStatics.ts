@@ -1,7 +1,7 @@
 /**
  * Specification for the static functions [[ICheckedException]]s should have.
  */
-export interface ICheckedExceptionStatics<A, T> {
+export interface ICheckedExceptionStatics<P, T> {
   /**
    * Checks if the objects is of the given type
    * @param obj Any object
@@ -12,5 +12,5 @@ export interface ICheckedExceptionStatics<A, T> {
    * Constructs a new instance of the Checked Exception
    * @param message Message string to be printed on the console
    */
-  of(data: A): T
+  of(data: P): T
 }

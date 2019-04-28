@@ -2,6 +2,6 @@ import {ICheckedException} from './iCheckedException'
 /**
  * Checked exception constructor
  */
-export type CheckedExceptionConstructor<A> = new (data: A) => ICheckedException<
-  A
->
+export type CheckedExceptionConstructor<N, A> = new (
+  data: A
+) => ICheckedException<N, A>
