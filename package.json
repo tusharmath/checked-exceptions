@@ -1,0 +1,46 @@
+{
+  "author": "Tushar Mathur <tusharmath@gmail.com>",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "description": "A utility library to create and manage checked exceptions in typescript",
+  "keywords": [
+    "typescript",
+    "exception",
+    "checked"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "checked-exceptions",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tusharmath/checked-exceptions.git"
+  },
+  "scripts": {
+    "lint": "tslint --project .",
+    "prepublishOnly": "tsc -d",
+    "prettier": "git ls-files | grep '.ts$' | xargs prettier --write --config=.prettierrc",
+    "semantic-release": "semantic-release",
+    "test": "mocha --require=ts-node/register --watch-extensions ts test/*.ts",
+    "travis-deploy-once": "travis-deploy-once --pro"
+  },
+  "version": "0.0.0-development",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.13.8",
+    "chai": "^4.2.0",
+    "cz-conventional-changelog": "^2.1.0",
+    "mocha": "^6.1.4",
+    "prettier": "^1.17.0",
+    "semantic-release": "^15.13.3",
+    "travis-deploy-once": "^5.0.11",
+    "ts-node": "^8.1.0",
+    "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.4.5",
+    "typescript-tslint-plugin": "^0.3.1"
+  }
+}

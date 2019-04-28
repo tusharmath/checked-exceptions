@@ -1,0 +1,26 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:all", "tslint-config-prettier"],
+  "rules": {
+    "no-implicit-dependencies": [true, "dev"],
+    "completed-docs": [
+      true,
+      {
+        "enums": true,
+        "functions": true,
+        "methods": true,
+        "properties": true,
+        "classes": true,
+        "enum-members": true,
+        "interfaces": true,
+        "namespaces": true,
+        "types": true,
+        "variables": true
+      }
+    ],
+    "typedef": [true, "call-signature", "parameter", "arrow-call-signature"],
+    "comment-format": true,
+    "no-parameter-properties": false
+  },
+  "rulesDirectory": []
+}
