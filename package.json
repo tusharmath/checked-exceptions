@@ -19,6 +19,7 @@
     "url": "https://github.com/tusharmath/checked-exceptions.git"
   },
   "scripts": {
+    "create-docs": "typedoc",
     "lint": "tslint --project .",
     "prepublishOnly": "tsc -d",
     "prettier": "git ls-files | grep '.ts$' | xargs prettier --write --config=.prettierrc",
