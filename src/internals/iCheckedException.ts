@@ -1,21 +1,15 @@
 /**
  * Typical checked exception
+ * @typeparam N Type of the exception
+ * @typeparam A Additional meta data required by the exception
  */
-export interface ICheckedException<N, A> extends Error {
+export interface ICheckedException<N extends string, A> extends Error {
   /**
    * Error data
    */
   data: A
   /**
-   * Error message
-   */
-  message: string
-  /**
    * Error type
    */
   type: N
-  /**
-   * Returns a printable error message
-   */
-  toString(): string
 }

@@ -54,14 +54,14 @@ describe('check()', () => {
 
       assert.strictEqual(
         error.toString(),
-        'CheckedException(UserIdNotFound): User with id: 190, could not be found'
+        'UserIdNotFound: User with id: 190, could not be found'
       )
     })
     it('should generate default string', () => {
       const E = check('NotImplemented')
       const error = new E()
 
-      assert.strictEqual(error.toString(), 'CheckedException(NotImplemented)')
+      assert.strictEqual(error.toString(), 'NotImplemented')
     })
   })
 
@@ -95,6 +95,13 @@ describe('check()', () => {
     it('should create a checked exception', () => {
       const E = check('NotImplemented')
       assert.ok(E.is(E.of()))
+    })
+  })
+
+  describe('name', () => {
+    it('should return the error name', () => {
+      const E = check('NotImplemented')
+      assert.strictEqual(new E().name, 'NotImplemented')
     })
   })
 })

@@ -33,7 +33,7 @@ yarn add checked-exceptions
 
 ### Create
 
-A checked exception can be created by just importing `check` function for the library and passing it the name of the exception.
+A checked exception can be created by just importing `check` function for the library and passing it the `type` of the exception.
 
 ```ts
 import {check} from 'checked-exceptions'
@@ -76,7 +76,7 @@ throw new UserIdNotFound({id: 1900, name: 'Foo'})
 
 The second argument is of type `function` and is used to generate the message string when the exception is thrown.
 
-### Access data
+### Access Data
 
 The default properties of an exception such as `stack` and `message` work like they do in a typical `Error` object. Additional properties such as `data` , `type` is also added, for eg:
 
