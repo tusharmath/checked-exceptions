@@ -3,12 +3,16 @@
 [![Build Status](https://travis-ci.com/tusharmath/checked-exceptions.svg?branch=master)](https://travis-ci.com/tusharmath/checked-exceptions)
 ![npm](https://img.shields.io/npm/v/checked-exceptions.svg)
 
-A utility library to create and manage checked exceptions in typescript
+A utility library to create and manage checked exceptions in typescript.
 
 # Index
 
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Create](#create)
+  - [Instantiate](#instantiate)
+  - [Customize](#customize)
+  - [Access Data](#access-data)
 - [Documentation](https://tusharmath.com/checked-exceptions)
 
 # Installation
@@ -27,41 +31,37 @@ yarn add checked-exceptions
 
 # Usage
 
-### Creating a checked exception type
+### Create
 
 A checked exception can be created by just importing `check` function for the library and passing it the name of the exception.
 
 ```ts
 import {check} from 'checked-exceptions'
 
-// Create a new exception type
 const NotImplemented = check('NotImplemented')
 
-// Throw the exception
 throw new NotImplemented()
 ```
 
-### Creating an instance
+### Instantiate
 
-An instance of the checked exception can be created using the `new` operator or using the static `of()` function, for eg:
+Once a checked exception class has been [created](#create), an instance of the checked exception can be created using the `new` operator or using the static `of()` function, for eg:
 
 **Using the new operator**
 
 ```ts
-const NotImplemented = check('NotImplemented')
 const err = new NotImplemented()
 ```
 
 **Using the of function**
 
 ```ts
-const NotImplemented = check('NotImplemented')
 const err = NotImplemented.of()
 ```
 
-### Customizing the exception
+### Customize
 
-A custom exception can be created by passing a second argument which is a function and returns a string, for eg:
+A custom exception with additional meta data can be created by passing a second argument for eg:
 
 ```ts
 type User = {id: number; name: string}
@@ -74,9 +74,11 @@ const UserIdNotFound = check(
 throw new UserIdNotFound({id: 1900, name: 'Foo'})
 ```
 
-### Accessing exception data
+The second argument is of type `function` and is used to generate the message string when the exception is thrown.
 
-The default properties of an exception such as `stack` and `message` work as is. An additional property `data` is added which lets us access properties of the exception, for eg:
+### Access data
+
+The default properties of an exception such as `stack` and `message` work like they do in a typical `Error` object. Additional properties such as `data` , `type` is also added, for eg:
 
 ```ts
 type User = {id: number; name: string}
@@ -89,4 +91,5 @@ const UserIdNotFound = check(
 const err = new UserIdNotFound({id: 1900, name: 'Foo'})
 
 console.log(err.data.id) // prints 1900
+console.log(err.type) // prints 'UserIdNotFound'
 ```
