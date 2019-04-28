@@ -31,7 +31,7 @@ yarn add checked-exceptions
 
 # Usage
 
-### Create
+## Create
 
 A checked exception can be created by just importing `check` function for the library and passing it the `type` of the exception.
 
@@ -43,7 +43,7 @@ const NotImplemented = check('NotImplemented')
 throw new NotImplemented()
 ```
 
-### Instantiate
+## Instantiate
 
 Once a checked exception class has been [created](#create), an instance of the checked exception can be created using the `new` operator or using the static `of()` function, for eg:
 
@@ -59,7 +59,7 @@ const err = new NotImplemented()
 const err = NotImplemented.of()
 ```
 
-### Customize
+## Customize
 
 A custom exception with additional meta data can be created by passing a second argument for eg:
 
@@ -76,7 +76,7 @@ throw new UserIdNotFound({id: 1900, name: 'Foo'})
 
 The second argument is of type `function` and is used to generate the message string when the exception is thrown.
 
-### Access Data
+## Access Data
 
 The default properties of an exception such as `stack` and `message` work like they do in a typical `Error` object. Additional properties such as `data` , `type` is also added, for eg:
 
