@@ -93,3 +93,23 @@ const err = new UserIdNotFound({id: 1900, name: 'Foo'})
 console.log(err.data.id) // prints 1900
 console.log(err.type) // prints 'UserIdNotFound'
 ```
+
+## Access Type
+
+To access the type of the exception you can use the `info` property on the created checked exception —
+
+```ts
+type User = {id: number; name: string}
+
+const UserIdNotFound = check(
+  'UserIdNotFound',
+  (user: User) => `Could not find user with id: ${user.id}`
+)
+
+type UserIdNodeFoundException = typeof UserIdNotFound.info
+
+const err: UserIdNodeFoundException = new UserIdNotFound({
+  id: 1900,
+  name: 'Foo'
+})
+```

@@ -63,4 +63,19 @@ export const check = <T extends string, A = void>(
 
       return `${this.name}${nStr}`
     }
+
+    /**
+     * Use `info` to access the type information.
+     *
+     * ```ts
+     * const NoSuchElement = check('NoSuchElement')
+     *
+     * type NoSuchElementException = typeof NoSuchElement.info
+     * ```
+     */
+    public static get info(): ICheckedException<T, A> {
+      throw new Error(
+        '`info` should only be accessed to infer the type of the exception.'
+      )
+    }
   }

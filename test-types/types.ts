@@ -11,3 +11,12 @@ const NotImplemented = E.check('NotImplemented')
 
 // $ExpectType CheckedExceptionClass<"NotImplemented", void>[]
 new Array<typeof NotImplemented>()
+
+// $ExpectType ICheckedException<"NotImplemented", void>
+E.check('NotImplemented').info
+
+// $ExpectType string
+E.check('NotImplemented', () => 'ABC').info.message
+
+// $ExpectType string | undefined
+E.check('NotImplemented', () => 'ABC').info.stack

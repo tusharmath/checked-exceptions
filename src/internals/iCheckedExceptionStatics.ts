@@ -3,6 +3,16 @@
  */
 export interface ICheckedExceptionStatics<P, T> {
   /**
+   * Use `info` to access the type information.
+   *
+   * ```ts
+   * const NoSuchElement = check('NoSuchElement')
+   *
+   * type NoSuchElementException = typeof NoSuchElement.info
+   * ```
+   */
+  info: T
+  /**
    * Checks if the objects is of the given type
    * @param obj Any object
    */
